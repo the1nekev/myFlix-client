@@ -27174,42 +27174,22 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "The Avengers",
-            image: "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg",
-            description: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
-            director: "Joss Whedon",
-            genre: [
-                "Action",
-                " Sci-Fi"
-            ]
-        },
-        {
-            id: 2,
-            title: "The Shawshank Redemption",
-            image: "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_QL75_UX190_CR0,2,190,281_.jpg",
-            description: "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.",
-            director: "Frank Darabont",
-            genre: [
-                "Drama"
-            ]
-        },
-        {
-            id: 3,
-            title: "The Super Mario Bros. Movie",
-            image: "https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_FMjpg_UX1000_.jpg",
-            description: "A plumber named Mario travels through an underground labyrinth with his brother, Luigi, trying to save a captured princess.",
-            director: "Aaron Horvath",
-            genre: [
-                "Aninamtion",
-                " Comedy",
-                " Adventure"
-            ]
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetch("https://marvelflix1nekev.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.map((movie)=>{
+                return {
+                    _id: movie.id,
+                    Title: movie.Title,
+                    Image: movie.ImagePath,
+                    Featured: movie.Featured
+                };
+            });
+            setMovies(moviesFromApi);
+            console.log(moviesFromApi);
+        });
+    }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>{
@@ -27217,14 +27197,14 @@ const MainView = ()=>{
         }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 29,
         columnNumber: 16
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty."
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 35,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27236,17 +27216,17 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 42,
                 columnNumber: 21
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 47,
+        lineNumber: 39,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "V2v5P/e6dL9lXlhNViGFBKi9nfg=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
