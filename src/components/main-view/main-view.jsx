@@ -12,16 +12,24 @@ export const MainView = () => {
     fetch("https://marvelflix1nekev.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.map((movie) => { 
-          return {
-            _id: movie.id,
-            Title: movie.Title,
-            Image: movie.ImagePath,
-            Featured: movie.Featured
-          };
+        console.log(data);
+        const moviesFromApi = data.map((movie) => {
+            return {
+              _id: movie.id,
+              Title: movie.Title,
+              ImagePath: movie.ImagePath,
+              Description: movie.Description,
+              Genre: {
+                Name: movie.Genre.Name
+              },
+              Director: {
+                Name: movie.Director.Name
+              },
+              Featured: movie.Featured.toString()
+            };
         });
         setMovies(moviesFromApi);
-        console.log(moviesFromApi); 
+        // console.log(moviesFromApi); 
       });
   }, []);
 
