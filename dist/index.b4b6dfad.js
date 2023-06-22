@@ -27188,14 +27188,13 @@ const MainView = ()=>{
                     Genre: {
                         Name: movie.Genre.Name
                     },
-                    Director: {
-                        Name: movie.Director.Name
-                    },
+                    //   Director: {
+                    //     Name: movie.Director.Name
+                    //   },
                     Featured: movie.Featured.toString()
                 };
             });
             setMovies(moviesFromApi);
-        // console.log(moviesFromApi); 
         });
     }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27205,14 +27204,14 @@ const MainView = ()=>{
         }
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 36,
         columnNumber: 16
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty."
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 42,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27224,13 +27223,13 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 49,
                 columnNumber: 21
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 47,
+        lineNumber: 46,
         columnNumber: 9
     }, undefined);
 };
@@ -27268,14 +27267,15 @@ const MovieCard = ({ movie , onMovieClick  })=>{
         lineNumber: 5,
         columnNumber: 9
     }, undefined);
-}; //PropTypes conditions for return MovieCard statement in main-view.jsx
- // MovieCard.propTypes = {
- //     movie: PropTypes.shape({
- //         Title: PropTypes.string.isRequired
- //     }).isRequired,
- //     onMovieClick: PropTypes.func.isRequired
- // };
+};
 _c = MovieCard;
+//PropTypes conditions for return MovieCard statement in main-view.jsx
+MovieCard.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        Title: (0, _propTypesDefault.default).string.isRequired
+    }).isRequired,
+    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "MovieCard");
 
@@ -28256,28 +28256,6 @@ const MovieView = ({ movie , onBackClick  })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Director: "
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 14,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.Director.Name
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 15,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 13,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: "Description: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -28355,24 +28333,21 @@ const MovieView = ({ movie , onBackClick  })=>{
         lineNumber: 5,
         columnNumber: 9
     }, undefined);
-} //Proptypes conditions for moviesFromApi variable return statement in main-view.jsx
- // MovieView.propTypes = {
- //     movie: PropTypes.shape({
- //         ImagePath: PropTypes.string.isRequired,
- //         Title: PropTypes.string.isRequired,
- //         Genre: PropTypes.shape({
- //             Name: PropTypes.string.isRequired
- //         }),
- //         Description: PropTypes.string.isRequired,
- //         Director: PropTypes.shape({
- //             Name: PropTypes.string.isRequired
- //         }),
- //         Featured: PropTypes.string.isRequired
- //     }).isRequired,
- //     onBackClick: PropTypes.func.isRequired
- // };
-;
+};
 _c = MovieView;
+//Proptypes conditions for moviesFromApi variable return statement in main-view.jsx
+MovieView.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        ImagePath: (0, _propTypesDefault.default).string.isRequired,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }),
+        Description: (0, _propTypesDefault.default).string.isRequired,
+        Featured: (0, _propTypesDefault.default).string.isRequired
+    }).isRequired,
+    onBackClick: (0, _propTypesDefault.default).func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "MovieView");
 

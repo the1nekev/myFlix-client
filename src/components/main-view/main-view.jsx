@@ -22,14 +22,13 @@ export const MainView = () => {
               Genre: {
                 Name: movie.Genre.Name
               },
-              Director: {
-                Name: movie.Director.Name
-              },
+            //   Director: {
+            //     Name: movie.Director.Name
+            //   },
               Featured: movie.Featured.toString()
             };
         });
-        setMovies(moviesFromApi);
-        // console.log(moviesFromApi); 
+        setMovies(moviesFromApi); 
       });
   }, []);
 
