@@ -18,59 +18,65 @@ export const SignupView = () => {
 
     fetch("https://marvelflix1nekev.herokuapp.com/users", {
       method: "POST",
-      body:JSON.stringify(data),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json"
       }
     }).then((response) => {
       if (response.ok) {
-        alert("Signup successful");
+        alert("Signup Successful!");
         window.location.reload();
       }else {
-        alert("Signup failed");
+        alert("Signup Failed ):");
       }
+
     });
   };
 
-  return (
+  return( 
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
+        Username: 
+        <input 
+        type="text"
+        value={username}
+        onChange={(e) => {setUsername(e.target.value)}}
+        required
+        minLength="3"
         />
       </label>
       <label>
-        Password:
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
+        Password: 
+        <input 
+        type="text"
+        value={password}
+        onChange={(e) => {setPassword(e.target.value)}}
+        required
         />
       </label>
       <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
+        Email: 
+        <input 
+        type="email"
+        value={email}
+        onChange={(e) => {setEmail(e.target.value)}}
+        required
         />
       </label>
       <label>
-        Birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
+        Birthday: 
+        <input 
+        type="date"
+        value={birthday}
+        onChange={(e) => {setBirthday(e.target.value)}}
+        required
         />
       </label>
+
+
+
+
+
       <button type="submit">Submit</button>
     </form>
   );
