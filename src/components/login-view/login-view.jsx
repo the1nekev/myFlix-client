@@ -1,23 +1,23 @@
-import React from "react";
 import { useState } from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
   const handleSubmit = (event) =>  {
     event.preventDefault();
 
     const data ={ 
-      access: username,
-      secret: password
+      Username: username,
+      Password: password
     };
 
     fetch("https://marvelflix1nekev.herokuapp.com/login", {
       method: "POST",
-      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      body: JSON.stringify(data) 
     })
     .then((response) => response.json())
     .then((data) => {
@@ -38,7 +38,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
 
   return (
-    <form onSubmit={{handleSubmit}}>
+    <form onSubmit={handleSubmit}>
       <label>
         Username: <input type="text"
         value={username}
