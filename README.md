@@ -13,7 +13,7 @@ Welcome to the myFlix app! This is a Single Page App(SPA) made using React.js th
 - Ability to create and manage a list of favorite movies;
 - Seamless integration with the server-side API.
 
-##Technologies Used: 
+## Technologies Used: 
 
 - JavaScript: Programming language used for the client-side development;
 - React.js: JavaScript library for building the user interface;
