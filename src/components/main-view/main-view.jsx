@@ -19,26 +19,27 @@ export const MainView = () => {
         }
 
         fetch("https://marvelflix1nekev.herokuapp.com/movies", {
-            headers: {Authorization: `Bearer ${token}`}
+            headers: {Authorization: `Bearer ${token}`},
         })
         .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
+        .then((movies) => {
+            setMovies(movies)
         });
   }, [token]);
 
-    if (!user) {
-        return(
+  if (!user) {
+    return (
         <>
-        <LoginView onLoggedIn={(user,token) => {
+        <LoginView onLoggedIn={(user, token) =>{
             setUser(user);
             setToken(token);
-        }} />
+        }}
+        />
         or 
         <SignupView />
-        </>
-        );
-    }
+        </> 
+    );
+  }
 
     if (selectedMovie) {
         return <MovieView movie={selectedMovie} onBackClick={() =>{
