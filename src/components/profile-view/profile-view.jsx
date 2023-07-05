@@ -12,7 +12,7 @@ export const ProfileView =({ user, token, setUser, movies, onLoggedOut}) => {
         return user.FavoriteMovies.includes(movie.id)
     });
 
-    console.log(user)
+    console.log(user.Username)
 
     //open/close Modal
     const handleShowModal = () => setShowModal(true);
