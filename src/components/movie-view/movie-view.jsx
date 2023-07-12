@@ -60,6 +60,7 @@ export const MovieView = ({ user, token, movies, setUser }) => {
             <Card.Title>{Movie.Title}</Card.Title>
             <Card.Text>Description: {Movie.Description}</Card.Text>
             <Card.Text>Genre: {Movie.Genre.Name}</Card.Text>
+            <Card.Text>Director: {Movie.director.Name}</Card.Text>
         </Card.Body>
 
         {Favorite ? (
