@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
+//pushing to github
 export const NavigationBar = ({ user, onLoggedOut }) => {
     return( 
         <Navbar bg="light" expand = "lg">
