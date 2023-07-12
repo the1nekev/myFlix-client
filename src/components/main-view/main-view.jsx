@@ -145,27 +145,6 @@ export const MainView = () => {
             }
           />
 
-          {/* <Route
-            path="/"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
-            }
-          /> */}
-
           {/* Filter test */}
           <Route
             path="/"
@@ -179,7 +158,7 @@ export const MainView = () => {
                                 <Col
                                     className="d-flex justify-content-center"
                                     style={{
-                                    marginTop: 90,
+                                    marginTop: 70,
                                     marginBottom: 20,
                                     }}
                                 >
