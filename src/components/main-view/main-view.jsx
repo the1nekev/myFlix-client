@@ -7,6 +7,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, Button } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { title } from "process";
 
 
 export const MainView = () => {
@@ -46,8 +47,7 @@ export const MainView = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-            const moviesFromApi = data.map((movie) => {
-              return{
+            const moviesFromApi = data.map((movie) => ({
                 id: movie._id,
                 Title: movie.Title,
                 ImagePath: movie.ImagePath,
@@ -59,10 +59,9 @@ export const MainView = () => {
                 //   Name: movie.Director.Name
                 // },
                 Featured: movie.Featured
-              };
-            });
+              }));
             setMovies(moviesFromApi);
-            setFilteredMovies(moviesFromApi);
+            setFilteredMovies(movies);
         });
   }, [token]);
 
@@ -186,12 +185,12 @@ export const MainView = () => {
                                 >
                                     <input
                                         type="text"
-                                          className="form-control form-control-lg"
-                                          placeholder="Search Movies"
-                                          value={searchTerm}
-                                          onChange={handleSearch}
-                                          />
-                                  </Col>
+                                        className="form-control form-control-lg"
+                                        placeholder="Search Movies"
+                                        value={searchTerm}
+                                        onChange={handleSearch}
+                                    />
+                                </Col>
                             </Row>
                             <Row>
                               {filteredMovies.length === 0 ? (
