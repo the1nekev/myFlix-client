@@ -6,15 +6,19 @@ import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { setMovies } from "../../redux/reducers/movies";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
-    const [movies, setMovies] = useState([]);
+    const movies = useSelector((state) => state.movies)
     const [user, setUser] = useState(storedUser? storedUser:null);
     const [token, setToken] = useState(storedToken? storedToken:null);
+
+    const dispatch = useDispatch();
 
     const onLogout = () => {
       setUser(null);
@@ -48,7 +52,7 @@ export const MainView = () => {
                 Featured: movie.Featured
               };
             });
-            setMovies(moviesFromApi)
+            dispatch(setMovies(moviesFromApi));
         });
   }, [token]);
 

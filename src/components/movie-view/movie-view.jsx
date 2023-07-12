@@ -4,8 +4,11 @@ import {Link } from "react-router-dom";
 import "./movie-view.scss";
 import { Button, Card } from "react-bootstrap"
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-export const MovieView = ({ user, token, movies, setUser }) => {
+export const MovieView = ({ user, token, setUser }) => {
+    const movies = useSelector((state) => state.movies);
+
     const { movieId } = useParams();
     const [ Favorite, setFavorite] = useState(false);
 
