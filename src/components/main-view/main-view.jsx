@@ -15,6 +15,19 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [user, setUser] = useState(storedUser? storedUser:null);
     const [token, setToken] = useState(storedToken? storedToken:null);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredMovies, setFilteredMovies] = useState([]);
+
+    const handleSearch = (event) => {
+      const searchQuery = event.target.value.toLowerCase();
+      setSearchTerm(searchQuery);
+
+      const filtered = movies.filter((movie) =>
+          movie.Title.toLowerCase().includes(searchQuery)
+      );
+
+      setFilteredMovies(filtered);
+  };
 
     const onLogout = () => {
       setUser(null);
@@ -48,7 +61,8 @@ export const MainView = () => {
                 Featured: movie.Featured
               };
             });
-            setMovies(moviesFromApi)
+            setMovies(moviesFromApi);
+            setFilteredMovies(moviesFromApi);
         });
   }, [token]);
 
@@ -152,6 +166,57 @@ export const MainView = () => {
               </>
             }
           />
+
+          {/* Filter test */}
+          <Route
+                        path="/"
+                        element={
+                            <>
+                                {!user ? (
+                                    <Navigate to="/login" replace />
+                                ) : (
+                                    <>
+                                        <Row>
+                                            <Col
+                                                className="d-flex justify-content-center"
+                                                style={{
+                                                    marginTop: 90,
+                                                    marginBottom: 20,
+                                                }}
+                                            >
+                                                <input
+                                                    type="text"
+                                                    className="form-control form-control-lg"
+                                                    placeholder="Search Movies"
+                                                    value={searchTerm}
+                                                    onChange={handleSearch}
+                                                />
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            {filteredMovies.length === 0 ? (
+                                                <Col>The list is empty!</Col>
+                                            ) : (
+                                                filteredMovies.map((movie) => (
+                                                    <Col
+                                                        className="mb-4"
+                                                        key={movie.id}
+                                                        sm={12}
+                                                        md={6}
+                                                        lg={4}
+                                                    >
+                                                        <MovieCard
+                                                            movie={movie}
+                                                        />
+                                                    </Col>
+                                                ))
+                                            )}
+                                        </Row>
+                                    </>
+                                )}
+                            </>
+                        }
+                    />
         </Routes>
       </Row>
     </BrowserRouter>
