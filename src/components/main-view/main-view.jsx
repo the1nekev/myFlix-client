@@ -169,54 +169,54 @@ export const MainView = () => {
 
           {/* Filter test */}
           <Route
-                        path="/"
-                        element={
-                            <>
-                                {!user ? (
-                                    <Navigate to="/login" replace />
-                                ) : (
-                                    <>
-                                        <Row>
-                                            <Col
-                                                className="d-flex justify-content-center"
-                                                style={{
-                                                    marginTop: 90,
-                                                    marginBottom: 20,
-                                                }}
-                                            >
-                                                <input
-                                                    type="text"
-                                                    className="form-control form-control-lg"
-                                                    placeholder="Search Movies"
-                                                    value={searchTerm}
-                                                    onChange={handleSearch}
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            {filteredMovies.length === 0 ? (
-                                                <Col>The list is empty!</Col>
-                                            ) : (
-                                                filteredMovies.map((movie) => (
-                                                    <Col
-                                                        className="mb-4"
-                                                        key={movie.id}
-                                                        sm={12}
-                                                        md={6}
-                                                        lg={4}
-                                                    >
-                                                        <MovieCard
-                                                            movie={movie}
-                                                        />
-                                                    </Col>
-                                                ))
-                                            )}
-                                        </Row>
-                                    </>
-                                )}
-                            </>
-                        }
-                    />
+            path="/"
+              element={
+                <>
+                    {!user ? (
+                        <Navigate to="/login" replace />
+                    ) : (
+                        <>
+                            <Row>
+                                <Col
+                                    className="d-flex justify-content-center"
+                                    style={{
+                                    marginTop: 90,
+                                    marginBottom: 20,
+                                    }}
+                                >
+                                    <input
+                                        type="text"
+                                          className="form-control form-control-lg"
+                                          placeholder="Search Movies"
+                                          value={searchTerm}
+                                          onChange={handleSearch}
+                                          />
+                                  </Col>
+                            </Row>
+                            <Row>
+                              {filteredMovies.length === 0 ? (
+                                <Col>The list is empty!</Col>
+                              ) : (
+                                  filteredMovies.map((movie) => (
+                                      <Col
+                                        className="mb-4"
+                                        key={movie.id}
+                                        sm={12}
+                                        md={6}
+                                        lg={4}
+                                        >
+                                          <MovieCard
+                                            movie={movie}
+                                          />
+                                      </Col>
+                                    ))
+                                 )}
+                            </Row>
+                          </>
+                        )}
+                      </>
+                    }
+          />
         </Routes>
       </Row>
     </BrowserRouter>
