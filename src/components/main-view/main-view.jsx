@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
@@ -16,44 +16,19 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [user, setUser] = useState(storedUser? storedUser:null);
     const [token, setToken] = useState(storedToken? storedToken:null);
-    const searchRef = useRef(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredMovies, setFilteredMovies] = useState([]);
 
-    const filterMovies = (searchInput) => {
-      if (searchInput.trim() === "") {
-        setFilteredMovies([]);
-      } else {
-        const filteredMovies = movies.filter(movie => {
-          return movie.Title.toLowerCase().includes(searchInput.toLowerCase());
-        });
-        setFilteredMovies(filteredMovies);
-      }
-    };
-  
     const handleSearch = (event) => {
-      const value = event.target.value;
-      setSearchTerm(value);
-      const results = movies.filter(movie => {
-        return movie.Title.toLowerCase().includes(value.toLowerCase());
-      });
-      setFilteredMovies(results);
-    }
-  
-    const handleFilter = (genre) => {
-      const results = movies.filter(movie => {
-        return movie.Genre.Name === genre;
-      });
-      setFilteredMovies(results);
-    }
-  
-    const searchMovies = () => {
-      if (searchRef.current && searchRef.current.value.trim() !== "") {
-        filterMovies(searchRef.current.value);
-      } else {
-        setFilteredMovies([]);
-      }
-    };
+      const searchQuery = event.target.value.toLowerCase();
+      setSearchTerm(searchQuery);
+
+      const filtered = movies.filter((movie) =>
+          movie.Title.toLowerCase().includes(searchQuery)
+      );
+
+      setFilteredMovies(filtered);
+  };
 
     const onLogout = () => {
       setUser(null);
@@ -72,8 +47,7 @@ export const MainView = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-            const moviesFromApi = data.map((movie) => {
-              return{
+            const moviesFromApi = data.map((movie) => ({
                 id: movie._id,
                 Title: movie.Title,
                 ImagePath: movie.ImagePath,
@@ -85,11 +59,10 @@ export const MainView = () => {
                 //   Name: movie.Director.Name
                 // },
                 Featured: movie.Featured
-              }
-              });
+              }));
             setMovies(moviesFromApi);
+            setFilteredMovies(moviesFromApi);
         });
-        setFilteredMovies(movies);
   }, [token]);
 
   return (
@@ -195,63 +168,54 @@ export const MainView = () => {
 
           {/* Filter test */}
           <Route
-  path="/"
-  element={
-    <>
-      {!user ? (
-        <Navigate to="/login" replace />
-      ) : movies.length === 0 ? (
-        <div className="greenFont">The list is empty!</div>
-      ) : (
-        <>
-          <Row className="justify-content-md-center mt-3" style={{marginBottom:'30px'}}>
-            <Col md={6}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <input
-                  type="text"
-                  placeholder="Search movies"
-                  value={searchTerm}
-                  onChange={handleSearch}
-                  ref={searchRef}
-                  className="search_bar"
-                />
-        
-                <Button variant="primary" onClick={searchMovies}>
-                  Search
-                </Button>
-              </div>
-              {searchTerm.trim() === "" ? (
-                <></>
-              ) : filteredMovies.length === 0 ? (
-                <div>No movies found</div>
-              ) : (
-                <Row style={{marginTop:'30px'}}>
-                  {filteredMovies.map((movie) => (
-                    <Col key={movie.id} sm={12} lg={6} className="mb-5">
-                      <MovieCard movie={movie} />
-                    </Col>
-                  ))}
-                </Row>
-              )}
-            </Col>
-          </Row>
-          <Row className="mt-4">
-            {movies.map((movie) => (
-              <Col
-                key={movie.id}
-                md={12}
-                lg={4}
-                className="mb-5"
-              >
-                <MovieCard movie={movie} />
-              </Col>
-            ))}
-          </Row>
-        </>
-      )}
-    </>
-  }
-/>
+            path="/"
+              element={
+                <>
+                    {!user ? (
+                        <Navigate to="/login" replace />
+                    ) : (
+                        <>
+                            <Row>
+                                <Col
+                                    className="d-flex justify-content-center"
+                                    style={{
+                                    marginTop: 90,
+                                    marginBottom: 20,
+                                    }}
+                                >
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-lg"
+                                        placeholder="Search Movies"
+                                        value={searchTerm}
+                                        onChange={handleSearch}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                              {filteredMovies.length === 0 ? (
+                                <Col>The list is empty!</Col>
+                              ) : (
+                                  filteredMovies.map((movie) => (
+                                      <Col
+                                        className="mb-4"
+                                        key={movie.id}
+                                        sm={12}
+                                        md={6}
+                                        lg={4}
+                                        >
+                                          <MovieCard
+                                            movie={movie}
+                                          />
+                                      </Col>
+                                    ))
+                                 )}
+                            </Row>
+                          </>
+                        )}
+                      </>
+                    }
+          />
         </Routes>
       </Row>
     </BrowserRouter>
