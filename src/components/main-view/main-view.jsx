@@ -61,7 +61,7 @@ export const MainView = () => {
                 Featured: movie.Featured
               }));
             setMovies(moviesFromApi);
-            setFilteredMovies(movies);
+            setFilteredMovies(moviesFromApi);
         });
   }, [token]);
 
