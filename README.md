@@ -1,25 +1,31 @@
 # myFlix-client
 
-Welcome to the myFlix app! This is a Single Page App(SPA) made using React.js that will consume the API that I created in this repository: https://github.com/the1nekev/movie_api , resulting in a responsive application designed for movie enthusiasts who enjoy reading information about different movies.
+This is a single-page web application (SPA) that allows users to search and filter movies using a user-friendly interface. The application uses state routing for navigation, ensuring that users can easily share URLs to specific views. It is built using React, ES2015+, and Bootstrap for styling and responsiveness. Parcel is used as the build tool to bundle the application for deployment.
 
-## Features
+# Features
+Search Movies: Users can search for movies by entering keywords or titles, providing a seamless way to find their favorite films.
 
-- User-friendly interface with smooth navigation;
-- Responsive design for optimal viewing on any device;
-- Routing functionality to switch between different views;
-- User authentication and authorization for personalized experience;
-- Search functionality to find movies based on titles or genres;
-- Detailed movie information including title, description, genre, director, and more;
-- Ability to create and manage a list of favorite movies;
-- Seamless integration with the server-side API.
+Filter Movies: The application provides filtering options, enabling users to narrow down movie search results based on various criteria, such as genre, release year, or rating.
 
-## Technologies Used: 
+State Routing: The application uses state routing to navigate between different views, making it easy to bookmark and share specific URLs.
 
-- JavaScript: Programming language used for the client-side development;
-- React.js: JavaScript library for building the user interface;
-- React Router: Declarative routing for navigation between views;
-- Redux Toolkit: State management for efficient data handling;
-- React-Bootstrap: CSS framework for responsive and visually appealing design;
-- Parcel: Web application bundler for easy setup and development;
-- Prettier: Code formatter for consistent and clean code styling;
-- npm: Package manager for managing dependencies and running scripts;
+UI Styling: Bootstrap is utilized as a UI library to ensure that the application is not only functional but also visually appealing and responsive on various devices.
+
+Function Components: The application is developed using function components, a modern approach to building user interfaces in React.
+
+Online Hosting: The application is hosted online, allowing users to access it from anywhere with an internet connection.
+
+Technologies Used
+Front-End:
+HTML 
+CSS
+React
+Bootstrap
+JavaScript
+Parcel (Build Tool)
+State Routing: React Router
+
+Backend: 
+Node.js
+Express.js
+
